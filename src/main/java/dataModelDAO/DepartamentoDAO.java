@@ -21,6 +21,7 @@ public abstract class DepartamentoDAO {
 	
 	//DEVUELVE UNA LISTA CON TODOS LOS DEPARTAMENTOS
 	public static List<Departamento> getAllDepartamento(Session s){
+		logger.debug("Obtencion de los datos de la tabla departamento");
 		String hQuery = "from Departamento";
 		List<Departamento> departamentoList = s.createQuery(hQuery, Departamento.class).list();
 		

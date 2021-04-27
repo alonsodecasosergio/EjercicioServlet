@@ -58,9 +58,10 @@ public class MostrarDepartamentos extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		logger.debug("Peticion de todos los departamentos");
 		PrintWriter out = response.getWriter();
 		List<Departamento> listaDepartamento = DepartamentoDAO.getAllDepartamento(session);
+		logger.debug("Escritura de los departamentos en la tabla");
 		printResponse(out, listaDepartamento);
 		out.close();
 	}
