@@ -1,11 +1,25 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+
+import dataModelDAO.DepartamentoDAO;
+import dataModelEntities.Departamento;
+import dataModelUtils.HibernateUtil;
 
 /**
  * Servlet implementation class MostrarDepartamentos
@@ -13,6 +27,11 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/MostrarDepartamentos")
 public class MostrarDepartamentos extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	private static Logger logger = LogManager.getLogger(MostrarDepartamentos.class);
+	
+	static SessionFactory sessionFactory;
+	static Session session;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -21,13 +40,30 @@ public class MostrarDepartamentos extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
+    
+	/**
+	 * @see Servlet#init(ServletConfig)
+	 */
+	public void init(ServletConfig config) throws ServletException {
+		// TODO Auto-generated method stub
+		
+		logger.info("%1$s: >>>>>> Main execution started.");
+		
+		session = HibernateUtil.getSessionFactory().openSession();
+		
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.getWriter().append("TABLA DEPARTAMENTOS");
+		
+		PrintWriter out = response.getWriter();
+		List<Departamento> listaDepartamento = DepartamentoDAO.getAllDepartamento(session);
+		printResponse(out, listaDepartamento);
+		out.close();
 	}
 
 	/**
@@ -36,6 +72,19 @@ public class MostrarDepartamentos extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+	}
+	
+	private PrintWriter printResponse(PrintWriter out, List<Departamento> listaDepartamento) {
+		
+		PrintWriter res = out;
+		
+		res.println("<html>");
+		res.println("<title>Servlet de pruebas :)</title>");
+		res.println("<body>");
+		res.println("</body>");
+		res.println("</html>");
+		
+		return res;
 	}
 
 }
