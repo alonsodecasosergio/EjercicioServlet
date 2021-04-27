@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="dataModelEntities.Departamento" table="DEPARTAMENTO">
+	 	 <id name="codigo" type="int">
+	 	 	<column name="CODIGO"></column>
+	 	 </id>
+	 	 <property generated="never" lazy="false" name="nombre" type="java.lang.String">
+	 	 	<column name="NOMBRE"></column>
+	 	 </property>
+	 	 <property generated="never" lazy="false" name="cod_responsable" type="int">
+	 	 	<column name="COD_RESPONASABLE"></column>
+	 	 </property>
+ 	</class>
+</hibernate-mapping>

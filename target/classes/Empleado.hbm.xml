@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ 	<class name="dataModelEntities.Empleado" table="EMPLEADO">
+	 	 <id name="codigo" type="int">
+	 	 	<column name="CODIGO"></column>
+	 	 </id>
+	 	 <property generated="never" lazy="false" name="nombre" type="java.lang.String">
+	 	 	<column name="NOMBRE"></column>
+	 	 </property>
+	 	 <property generated="never" lazy="false" name="apellido1" type="java.lang.String">
+	 	 	<column name="APELLIDO1"></column>
+	 	 </property>
+	 	 <property generated="never" lazy="false" name="apellido2" type="java.lang.String">
+	 	 	<column name="APELLIDO2"></column>
+	 	 </property>
+	 	 <property generated="never" lazy="false" name="lugarNacimiento" type="java.lang.String">
+	 	 	<column name="LUGAR_NACIMIENTO"></column>
+	 	 </property>
+	 	 <property generated="never" lazy="false" name="fechaNacimiento" type="char[]">
+	 	 	<column name="FECHA_NACIMIENTO"></column>
+	 	 </property>
+	 	 <property generated="never" lazy="false" name="direccion" type="java.lang.String">
+	 	 	<column name="DIRECCION"></column>
+	 	 </property>
+	 	 <property generated="never" lazy="false" name="telefono" type="java.lang.String">
+	 	 	<column name="TELEFONO"></column>
+	 	 </property>
+	 	 <property generated="never" lazy="false" name="puesto" type="java.lang.String">
+	 	 	<column name="PUESTO"></column>
+	 	 </property>
+	 	 <property generated="never" lazy="false" name="cod_departamento" type="int">
+	 	 	<column name="COD_DEPARTAMENTO"></column>
+	 	 </property>
+ 	</class>
+</hibernate-mapping>
