@@ -19,9 +19,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import dataModelDAO.DepartamentoDAO;
-import dataModelDAO.EmpleadoDAO;
 import dataModelEntities.Departamento;
-import dataModelEntities.Empleado;
 import dataModelUtils.HibernateUtil;
 
 /**
@@ -63,9 +61,9 @@ public class MostrarDepartamentos extends HttpServlet {
 		// TODO Auto-generated method stub
 		logger.debug("Peticion de todos los departamentos");
 		PrintWriter out = response.getWriter();
-		List<Empleado> listaEmpleado = EmpleadoDAO.getAllEmpleado(session);
+		List<Departamento> listaDepartamento = DepartamentoDAO.getAllDepartamento(session);
 		logger.debug("Escritura de los departamentos en la tabla");
-		printResponse(out, listaEmpleado);
+		printResponse(out, listaDepartamento);
 		out.close();
 	}
 
@@ -77,7 +75,7 @@ public class MostrarDepartamentos extends HttpServlet {
 		doGet(request, response);
 	}
 	
-	private PrintWriter printResponse(PrintWriter out, List<Empleado> listaEmpleado) {
+	private PrintWriter printResponse(PrintWriter out, List<Departamento> listaDepartamento) {
 		
 		PrintWriter res = out;
 		
@@ -89,32 +87,15 @@ public class MostrarDepartamentos extends HttpServlet {
 		res.println("<tr>");
 		res.println("<td> CODIGO </td>");
 		res.println("<td> NOMBRE </td>");
-		res.println("<td> PRIMER APELLIDO </td>");
-		res.println("<td> SEGUNDO APELLIDO </td>");
-		res.println("<td> LUGAR DE NACIMIENTO </td>");
-		res.println("<td> FECHA DE NACIMEINTO </td>");
-		res.println("<td> DIRECCION </td>");
-		res.println("<td> TELEFONO </td>");
-		res.println("<td> PUESTO </td>");
-		res.println("<td> CODIGO DE DEPARTAMENTO </td>");
-		
+		res.println("<td> CODIGO RESPONSABLE </td>");
 		res.println("</tr>");
-		for(int i = 0; i < listaEmpleado.size(); i++) {
+		for(int i = 0; i < listaDepartamento.size(); i++) {
 			
-			Empleado emple = listaEmpleado.get(i);
-			
+			Departamento depar = listaDepartamento.get(i);
 			res.println("<tr>");
-			res.println("<td>" + emple.getCodigo() + "</td>");
-			res.println("<td>" + emple.getNombre() + "</td>");
-			res.println("<td>" + emple.getApellido1() + "</td>");
-			res.println("<td>" + emple.getApellido2() + "</td>");
-			res.println("<td>" + emple.getLugarNacimiento() + "</td>");
-			res.println("<td>" + Arrays.toString(emple.getFechaNacimiento()) + "</td>");
-			res.println("<td>" + emple.getDireccion()+ "</td>");
-			res.println("<td>" + emple.getTelefono() + "</td>");
-			res.println("<td>" + emple.getPuesto() + "</td>");
-			res.println("<td>" + emple.getCod_departamento() + "</td>");
-			
+			res.println("<td>" + depar.getCodigo() + "</td>");
+			res.println("<td>" + depar.getNombre() + "</td>");
+			res.println("<td>" + depar.getCod_responsable() + "</td>");
 			res.println("</tr>");
 		}
 		res.println("</table>");
