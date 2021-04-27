@@ -81,6 +81,22 @@ public class MostrarDepartamentos extends HttpServlet {
 		res.println("<html>");
 		res.println("<title>Servlet de pruebas :)</title>");
 		res.println("<body>");
+		res.println("<table>");
+		res.println("<tr>");
+		res.println("<td> CODIGO </td>");
+		res.println("<td> NOMBRE </td>");
+		res.println("<td> CODIGO RESPONSABLE </td>");
+		res.println("</tr>");
+		for(int i = 0; i < listaDepartamento.size(); i++) {
+			
+			Departamento depar = listaDepartamento.get(i);
+			
+			res.println("<td>" + depar.getCodigo() + "</td>");
+			res.println("<td>" + depar.getNombre() + "</td>");
+			res.println("<td>" + depar.getCod_responsable() + "</td>");
+			
+		}
+		res.println("</table>");
 		res.println("</body>");
 		res.println("</html>");
 		
