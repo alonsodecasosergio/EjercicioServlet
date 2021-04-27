@@ -58,7 +58,6 @@ public class MostrarDepartamentos extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("TABLA DEPARTAMENTOS");
 		
 		PrintWriter out = response.getWriter();
 		List<Departamento> listaDepartamento = DepartamentoDAO.getAllDepartamento(session);
@@ -79,9 +78,10 @@ public class MostrarDepartamentos extends HttpServlet {
 		PrintWriter res = out;
 		
 		res.println("<html>");
-		res.println("<title>Servlet de pruebas :)</title>");
+		res.println("<title>Ejercicio Serverlet | Sergio Alonso</title>");
 		res.println("<body>");
-		res.println("<table>");
+		res.println("<h1>TABLA DEPARTAMENTOS</h1>");		
+		res.println("<table border=\"2\">");
 		res.println("<tr>");
 		res.println("<td> CODIGO </td>");
 		res.println("<td> NOMBRE </td>");
@@ -90,11 +90,11 @@ public class MostrarDepartamentos extends HttpServlet {
 		for(int i = 0; i < listaDepartamento.size(); i++) {
 			
 			Departamento depar = listaDepartamento.get(i);
-			
+			res.println("<tr>");
 			res.println("<td>" + depar.getCodigo() + "</td>");
 			res.println("<td>" + depar.getNombre() + "</td>");
 			res.println("<td>" + depar.getCod_responsable() + "</td>");
-			
+			res.println("</tr>");
 		}
 		res.println("</table>");
 		res.println("</body>");
