@@ -58,10 +58,14 @@ public class MostrarDepartamentos extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		//OBTENCION DE LA LISTA DE DEPARTAMENTOS
 		logger.debug("Peticion de todos los departamentos");
 		PrintWriter out = response.getWriter();
 		List<Departamento> listaDepartamento = DepartamentoDAO.getAllDepartamento(session);
 		logger.debug("Escritura de los departamentos en la tabla");
+		
+		//SE LE PASA LA LISTA AL METODO QUE DIBUJARA LA TABLA CON ESA LISTA
 		printResponse(out, listaDepartamento);
 		out.close();
 	}
@@ -88,6 +92,8 @@ public class MostrarDepartamentos extends HttpServlet {
 		res.println("<td> NOMBRE </td>");
 		res.println("<td> CODIGO RESPONSABLE </td>");
 		res.println("</tr>");
+		
+		//RECORRIDO DE LOS DEPARTAMENTOS PARA PINTARLOS EN LA TABLA
 		for(int i = 0; i < listaDepartamento.size(); i++) {
 			
 			Departamento depar = listaDepartamento.get(i);
