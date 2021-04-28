@@ -49,6 +49,7 @@ public class MostrarDatos extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
 		// TODO Auto-generated method stub
 		
+		//INFORMACION DE INICIO DEL PROGRAMA Y INICIO DE LA SESSION DE HIBERNATE
 		logger.info("%1$s: >>>>>> Main execution started. MOSTRAR DATOS");
 		
 		session = HibernateUtil.getSessionFactory().openSession();
@@ -60,10 +61,12 @@ public class MostrarDatos extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
+		//RECUPERA EL PARAMETRO
 		String parameter = request.getParameter("table");
 		
 		logger.debug("Peticion de todos los departamentos");
 		PrintWriter out = response.getWriter();
+		//SI EL PARAMETRO ES EMPLEADO OBTENDRA LA LISTA DE EMPLEADOS Y LA ESCRIBIRA EN PANTALLA ATRAVES DEL METODO
 		if(parameter.equals("empleado")) {
 			
 			logger.debug("Peticion de todos los empleados");
@@ -71,6 +74,7 @@ public class MostrarDatos extends HttpServlet {
 			logger.debug("Escritura de los empleados en la tabla");
 			printResponseEmpleados(out, listaEmpleado);
 			
+			//EN CAMBIO SI EL PARAMETRO ES DEPARTMENTO SE PINTARA LA TABLA DE DEPARTAMENTOS
 		}else if(parameter.equals("departamento")) {
 			
 			logger.debug("Peticion de todos los departamentos");
@@ -104,6 +108,8 @@ public class MostrarDatos extends HttpServlet {
 		res.println("<td> NOMBRE </td>");
 		res.println("<td> CODIGO RESPONSABLE </td>");
 		res.println("</tr>");
+		
+		//RECORRIDO DE LAS FILAS DE DEPARTAMENTOS PARA PINTARLOS EN LA TABLA
 		for(int i = 0; i < listaDepartamento.size(); i++) {
 			
 			Departamento depar = listaDepartamento.get(i);
@@ -142,6 +148,8 @@ public class MostrarDatos extends HttpServlet {
 		res.println("<td> CODIGO DE DEPARTAMENTO </td>");
 		
 		res.println("</tr>");
+		
+		//RECORRIDO DE LAS FILAS DE EMPLEADOS PARA PINTARLOS POR PANTALLA
 		for(int i = 0; i < listaEmpleado.size(); i++) {
 			
 			Empleado emple = listaEmpleado.get(i);
@@ -153,6 +161,7 @@ public class MostrarDatos extends HttpServlet {
 			res.println("<td>" + emple.getApellido2() + "</td>");
 			res.println("<td>" + emple.getLugarNacimiento() + "</td>");
 			
+			//FORMATEO DE LA FECHA DE NACIMEINTO PARA QUE SEA MÁS LEGIBLE
 			String fNacimiento = "";
 			for(int j = 0; j < emple.getFechaNacimiento().length; j++)  {
 				fNacimiento += emple.getFechaNacimiento()[j];

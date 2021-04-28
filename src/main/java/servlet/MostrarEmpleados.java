@@ -59,10 +59,13 @@ public class MostrarEmpleados extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
+		//OBTENCION DE LA LISTA DE EMPLEADOS
 		logger.debug("Peticion de todos los empleados");
 		PrintWriter out = response.getWriter();
 		List<Empleado> listaEmpleado = EmpleadoDAO.getAllEmpleado(session);
 		logger.debug("Escritura de los empleados en la tabla");
+		
+		//SE LE PASA LA LISTA AL METODO QUE DIBUJARA LA TABLA CON ESA LISTA
 		printResponse(out, listaEmpleado);
 		out.close();
 	}
@@ -96,6 +99,7 @@ public class MostrarEmpleados extends HttpServlet {
 		res.println("<td> PUESTO </td>");
 		res.println("<td> CODIGO DE DEPARTAMENTO </td>");
 		
+		//RECORRIDO DE LOS EMPLEADOS PARA PINTARLOS EN LA TABLA
 		res.println("</tr>");
 		for(int i = 0; i < listaEmpleado.size(); i++) {
 			
@@ -108,6 +112,7 @@ public class MostrarEmpleados extends HttpServlet {
 			res.println("<td>" + emple.getApellido2() + "</td>");
 			res.println("<td>" + emple.getLugarNacimiento() + "</td>");
 			
+			//FORMATE DE LA FECHA DE NACIMIENTO PARA QUE SEA MAS LEGIBLE
 			String fNacimiento = "";
 			for(int j = 0; j < emple.getFechaNacimiento().length; j++)  {
 				fNacimiento += emple.getFechaNacimiento()[j];
